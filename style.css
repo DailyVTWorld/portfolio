@@ -100,6 +100,9 @@ header p {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 75, 130, 0.55);
 }
+.cta-button:active {
+  transform: scale(0.97);
+}
 
 /* SECTIONS */
 section {
@@ -113,7 +116,7 @@ h2 {
   text-align: center;
 }
 
-/* PORTFOLIO GRID (CORREGIDO PARA QUE NO SE ROMPA) */
+/* PORTFOLIO GRID */
 .video-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -174,12 +177,15 @@ h2 {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.1s ease;
 }
 .expand-btn:hover {
   background: rgba(255, 75, 130, 0.15);
   border-color: #ff4b82;
   color: #fff;
+}
+.expand-btn:active {
+  transform: scale(0.97);
 }
 .arrow-icon {
   transition: transform 0.3s ease;
@@ -221,6 +227,9 @@ h2 {
   border-radius: 12px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+.badge-agency {
+  background: #ff2a5f;
 }
 .price-card h3 {
   color: #fff;
@@ -328,6 +337,53 @@ footer p {
   border-color: #ff4b82;
   color: #fff;
   transform: translateY(-2px);
+}
+.social-icon-btn:active {
+  transform: scale(0.97);
+}
+
+/* TOS MODAL STYLES */
+.tos-toggle-container {
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.25rem;
+}
+.tos-toggle-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.tos-toggle-btn:hover {
+  color: #e2e8f0;
+}
+.tos-modal {
+  display: none;
+  text-align: left;
+  background: rgba(18, 18, 22, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tos-title {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+.tos-list {
+  list-style: disc;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 /* RESPONSIVE MEDIA QUERIES */
