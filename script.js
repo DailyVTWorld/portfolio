@@ -18,9 +18,12 @@ function toggleMoreVideos() {
 function toggleTOS() {
   const tos = document.getElementById('tosContainer');
   
-  if (tos.style.display === 'none' || tos.style.display === '') {
+  // Leemos el valor real renderizado por el navegador (evita la falla del primer clic)
+  const isHidden = window.getComputedStyle(tos).display === 'none';
+
+  if (isHidden) {
     tos.style.display = 'block';
-    // Desplaza suavemente la vista hacia el modal del TOS para que se lea cómodo
+    // Desplaza suavemente hacia el modal para leerlo cómodo
     tos.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   } else {
     tos.style.display = 'none';
