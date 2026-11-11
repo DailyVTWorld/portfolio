@@ -14,8 +14,15 @@ function toggleMoreVideos() {
   }
 }
 
-/* Toggle de modal TOS */
+/* Toggle de modal TOS con scroll automático */
 function toggleTOS() {
   const tos = document.getElementById('tosContainer');
-  tos.style.display = tos.style.display === 'none' ? 'block' : 'none';
+  
+  if (tos.style.display === 'none' || tos.style.display === '') {
+    tos.style.display = 'block';
+    // Desplaza suavemente la vista hacia el modal del TOS para que se lea cómodo
+    tos.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  } else {
+    tos.style.display = 'none';
+  }
 }

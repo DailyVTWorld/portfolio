@@ -346,18 +346,27 @@ footer p {
 .tos-toggle-container {
   margin-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 1.25rem;
+  padding-top: 1.5rem;
+  text-align: center;
 }
 .tos-toggle-btn {
-  background: none;
-  border: none;
-  color: #94a3b8;
-  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
-  text-decoration: underline;
+  padding: 0.6rem 1.2rem;
+  border-radius: 9999px;
+  transition: all 0.2s ease;
 }
 .tos-toggle-btn:hover {
-  color: #e2e8f0;
+  background: rgba(255, 75, 130, 0.1);
+  border-color: #ff4b82;
+  color: #fff;
+}
+.tos-toggle-btn:active {
+  transform: scale(0.97);
 }
 .tos-modal {
   display: none;
