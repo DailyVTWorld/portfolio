@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VT World | VTuber & Short-Form Video Editor</title>
+  <style>
+    /* RESET & BASE (MOBILE-FIRST) */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0f0f12;
+      color: #e2e8f0;
+      line-height: 1.5;
+      padding: 0 1rem;
+    }
+    a {
+      color: #ff4b82;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    /* CONTAINER */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 0;
+    }
+
+    /* HERO / HEADER */
+    header {
+      text-align: center;
+      padding: 2rem 0.5rem;
+      border-bottom: 1px solid #1e293b;
+    }
+    header h1 {
+      font-size: 2rem;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    header p {
+      font-size: 1rem;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+    .cta-button {
+      display: inline-block;
+      width: 100%;
+      max-width: 320px;
+      background: linear-gradient(135deg, #ff4b82, #ff2a5f);
+      color: #fff;
+      padding: 0.85rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(255, 75, 130, 0.35);
+    }
+    .cta-button:hover {
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 75, 130, 0.55);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid #1e293b;
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: #ffffff;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    /* PORTFOLIO GRID (MOBILE-FIRST: 1 COL) */
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      justify-items: center;
+    }
+    .video-card {
+      width: 100%;
+      max-width: 320px;
+      aspect-ratio: 9 / 16;
+      background: #18181c;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #27272a;
+      position: relative;
+    }
+    .short-link {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .short-link img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: bold;
+      font-size: 1rem;
+      opacity: 0.9;
+      transition: opacity 0.2s ease, background 0.2s ease;
+    }
+
+    /* PRICING GRID (MOBILE-FIRST: 1 COL) */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .price-card {
+      background: #18181c;
+      border: 1px solid #27272a;
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .price-card.featured {
+      border-color: #ff4b82;
+      background: #1c1520;
+    }
+    .badge {
+      position: absolute;
+      top: -11px;
+      right: 16px;
+      background: #ff4b82;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 2px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .price-card h3 {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+    .price {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: #ff4b82;
+      margin-bottom: 1rem;
+    }
+    .price span {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+    .price-card ul {
+      list-style: none;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    .price-card ul li {
+      margin-bottom: 0.5rem;
+      color: #cbd5e1;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .price-card ul li::before {
+      content: "✓ ";
+      color: #ff4b82;
+      font-weight: bold;
+    }
+
+    /* WORKFLOW LIST */
+    .workflow-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .workflow-list li {
+      background: #18181c;
+      border: 1px solid #27272a;
+      border-radius: 10px;
+      padding: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      font-size: 0.95rem;
+    }
+    .workflow-step {
+      background: #ff4b82;
+      color: #fff;
+      font-weight: 800;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2.5rem 0.5rem 1rem;
+    }
+    footer p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .social-links a {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* =================================================== */
+    /* RESPONSIVE MEDIA QUERIES (TABLETS & DESKTOP ENHANCEMENTS) */
+    /* =================================================== */
+
+    /* TABLETS (min-width: 640px) */
+    @media (min-width: 640px) {
+      header h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.8rem; }
+
+      .video-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .cta-button {
+        width: auto;
+      }
+
+      .social-links {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+    }
+
+    /* DESKTOP (min-width: 992px) */
+    @media (min-width: 992px) {
+      .pricing-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .short-link:hover .play-overlay {
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.65);
+      }
+      .short-link:hover img {
+        transform: scale(1.05);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    
+    <!-- Hero Section -->
+    <header>
+      <h1>VT World</h1>
+      <p>Short-Form Video Editor specializing in VTuber clips, TikToks, Shorts, and Reels with fast turnaround and high retention framing.</p>
+      <a href="https://x.com/DailyVT_World" target="_blank" class="cta-button">Order via X / Twitter DM</a>
+    </header>
+
+   <!-- Portfolio Section -->
+    <section id="portfolio">
+      <h2>Featured Works</h2>
+      <div class="video-grid">
+        
+        <!-- Clip 1 -->
+        <div class="video-card">
+          <iframe src="https://www.youtube.com/embed/CQjB1xvR91I" title="VTuber Clip 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+
+        <!-- Clip 2 -->
+        <div class="video-card">
+          <iframe src="https://www.youtube.com/embed/szkWVt4sEyk" title="VTuber Clip 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+
+        <!-- Clip 3 -->
+        <div class="video-card">
+          <iframe src="https://www.youtube.com/embed/-cSmOZMOELQ" title="VTuber Clip 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="rates">
+      <h2>Pricing & Packages</h2>
+      <div class="pricing-grid">
+        
+        <!-- Standard -->
+        <div class="price-card">
+          <h3>Standard Short Clip</h3>
+          <div class="price">$10 – $15 <span>/ clip</span></div>
+          <ul>
+            <li>Up to 60 seconds</li>
+            <li>Dynamic animated subtitles</li>
+            <li>Vertical framing & panning</li>
+            <li>Sound effects & basic transitions</li>
+            <li>Based on provided timestamps</li>
+          </ul>
+        </div>
+
+        <!-- Scrubbing Addon -->
+        <div class="price-card">
+          <h3>Scrubbing Add-on</h3>
+          <div class="price">+$5 <span>/ clip</span></div>
+          <ul>
+            <li>Highlight hunting in raw VODs</li>
+            <li>Hook selection & clip isolation</li>
+            <li>Extracting best moments for you</li>
+            <li>Can be added to any package</li>
+          </ul>
+        </div>
+
+        <!-- Bulk 8 Shorts -->
+        <div class="price-card featured">
+          <span class="badge">Weekly Pack</span>
+          <h3>Bulk Pack (8 Shorts)</h3>
+          <div class="price">$75 <span>/ pack</span></div>
+          <ul>
+            <li><strong>8 Short Clips</strong> ($9.3/clip)</li>
+            <li>Dynamic subtitles & framing</li>
+            <li>Fast 24–48h batch delivery</li>
+            <li>Ideal for consistent posting</li>
+          </ul>
+        </div>
+
+        <!-- Bulk 10 Shorts -->
+        <div class="price-card featured" style="border-color: #ff2a5f; background: #201319;">
+          <span class="badge" style="background: #ff2a5f;">Agency Deal</span>
+          <h3>Bulk Pack (10 Shorts)</h3>
+          <div class="price">$90 <span>/ pack</span></div>
+          <ul>
+            <li><strong>10 Short Clips</strong> ($9/clip)</li>
+            <li>Maximum savings per clip</li>
+            <li>Priority editing turnaround</li>
+            <li>Best value for agency VODs</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow">
+      <h2>Simple Workflow</h2>
+      <ul class="workflow-list">
+        <li>
+          <div class="workflow-step">1</div>
+          <div><strong>Send Footage:</strong> Provide raw stream clips, VOD links, or timestamp list.</div>
+        </li>
+        <li>
+          <div class="workflow-step">2</div>
+          <div><strong>Editing & Styling:</strong> Fast 24–48h turnaround with dynamic subtitles & SFX.</div>
+        </li>
+        <li>
+          <div class="workflow-step">3</div>
+          <div><strong>Review & Export:</strong> Minor tweaks included, delivered in clean 1080x1920 MP4.</div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer>
+      <h2>Ready to work together?</h2>
+      <p>Free sample clip available for agencies and creators wanting to test the workflow first.</p>
+      <div class="social-links">
+        <a href="https://x.com/DailyVT_World" target="_blank">X / Twitter (@DailyVT_World)</a>
+        <a href="https://youtube.com/@DailyVT-World" target="_blank">YouTube Channel</a>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
