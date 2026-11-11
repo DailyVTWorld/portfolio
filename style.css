@@ -418,3 +418,50 @@ footer p {
     grid-template-columns: repeat(4, 1fr);
   }
 }
+/* EXPERTISE SECTION STYLES */
+.expertise-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+.expertise-card {
+  background: rgba(18, 18, 22, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.expertise-icon {
+  font-size: 1.5rem;
+  background: rgba(255, 75, 130, 0.1);
+  border: 1px solid rgba(255, 75, 130, 0.2);
+  width: 45px;
+  height: 45px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.expertise-card h3 {
+  color: #fff;
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+}
+.expertise-card p {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Responsive para la grilla de especialización */
+@media (min-width: 768px) {
+  .expertise-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
